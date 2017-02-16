@@ -65,6 +65,16 @@
 	[ $status -eq 1 ]
 }
 
+@test "successful postgresql connection with retry" {
+	run await -r 5 postgresql://me:secret@postgresql:5432?mydb
+	[ $status -eq 0 ]
+}
+
+@test "unsuccessful postgresql connection with retry" {
+	run await -r 1 postgresql://unknown
+	[ $status -eq 1 ]
+}
+
 @test "successful memcached connection with retry" {
 	run await -r 2 memcached://memcached:11211
 	[ $status -eq 0 ]
