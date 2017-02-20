@@ -1,5 +1,4 @@
 #!/usr/bin/env bats
-
 @test "successful redis connection" {
 	run await -r 5 redis://redis
 	[ $status -eq 0 ]
@@ -66,7 +65,7 @@
 }
 
 @test "successful postgresql connection with retry" {
-	run await -r 5 postgresql://me:secret@postgresql:5432?mydb
+	run await -r 5 postgresql://postgres:secret@postgresql:5432
 	[ $status -eq 0 ]
 }
 
